@@ -1,0 +1,27 @@
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:security="http://www.springframework.org/schema/security" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+ http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+ http://www.springframework.org/schema/security
+ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+ 
+ <import resource="application-db-access.xml"/>
+
+	<security:http auto-config="true">
+	  <security:logout />
+	  <security:intercept-url pattern="/**" access="ROLE_ADMIN" requires-channel="any"/>
+	</security:http>
+
+  <security:authentication-manager>
+    <security:authentication-provider user-service-ref='usersService'/>
+  </security:authentication-manager>
+  
+
+  
+  <security:jdbc-user-service id="usersService" 
+	data-source-ref="dataSource" 
+	users-by-username-query=
+	"select userName, userPassword from users where userName=? and userRole='ROLE_ADMIN';" />
+
+</beans>

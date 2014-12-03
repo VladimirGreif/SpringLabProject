@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping>
+   <class name="ca.springmvc.application.utils.User" table="manager">
+      <meta attribute="class-description">
+         This class contains the manager detail. 
+      </meta>
+      <id name="userID" type="int" column="userID">
+         <generator class="assigned"/>
+         <!-- "native" -->
+         
+      </id>
+      <property name="userName" column="userName" type="string"/>
+      <property name="userPassword" column="userPassword" type="string"/>
+      <property name="userMail" column="userMail" type="string"/>
+      <property name="userNick" column="userNick" type="string"/>
+   </class>
+
+</hibernate-mapping>
